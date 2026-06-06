@@ -1,3 +1,8 @@
+import dns from 'dns';
+dns.setServers(['8.8.8.8', '8.8.4.4']); // Google DNS
+
+// then your imports, dotenv, and mongoose connect
+
 import express from 'express';
 import "dotenv/config";
 import cookieParser from 'cookie-parser';
@@ -15,7 +20,7 @@ const __dirname = path.resolve();
 
 
 app.use(cors({
-  origin: 'http://localhost:5173', // Replace with your frontend URL
+  origin: process.env.FRONTEND_URL || 'http://localhost:5173', // Replace with your frontend URL
   credentials: true, // Allow cookies to be sent
 }));
 app.use(express.json());
